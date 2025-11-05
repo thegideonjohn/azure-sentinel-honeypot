@@ -287,7 +287,7 @@ Click `Apply`, then `Revie`w + `create`, then `Create`.
 The project is now 100% complete and automated.
 
 
-Project Cleanup (IMPORTANT)
+### Project Cleanup (IMPORTANT)
 When you are finished, you must delete the resources to stop all charges.
 
 Go to Resource groups.
