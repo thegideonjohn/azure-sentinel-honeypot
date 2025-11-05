@@ -68,7 +68,7 @@ This is the security "brain" that will analyze the logs.
 3.  Select the `honeypot-rg-law` you just created from the list.
 4.  Click **Add** to enable Sentinel.
 
-<p align="left"><img src="sentinel overview.png" width="49%"></p>
+<p align="left"><img src="sentinel-overview.png" width="49%"></p>
 
 
 ---
@@ -76,7 +76,7 @@ This is the security "brain" that will analyze the logs.
 ### Part 2: The Target (The VM)
 
 #### Step 4: Create the Virtual Machine
-This is our "honeypot."
+This is the "honeypot."
 1.  Search for `Virtual machines`.
 2.  Click **+ Create** > **Azure virtual machine**.
 3.  **Basics Tab:**
@@ -167,11 +167,11 @@ SecurityEvent
 ```
 You will now see a clean list of attacker IPs and the usernames they are guessing.
 
-<p align="left"><img src="automation.png" width="49%"></p>
+<p align="left"><img src="kql-query-and-output.png" width="49%"></p>
 
 
 ### Part 5: Investigation & Visualization
-**Step 8:** Investigate an Attacker
+**Step 9: Investigate an Attacker**
 Is the IP really malicious?
 
 Copy an attacker's IP from your query results.
@@ -185,7 +185,7 @@ View the "Detection" score (e.g., 12/95). This confirms the IP is a known bad ac
 <p align="left"><img src="virustotal-output.png" width="49%"></p>
 
 
-**Step 9:** Build the Live Attack Map (Workbook)
+**Step 10: Build the Live Attack Map (Workbook)**
 The "Logs" query chart is buggy. A Workbook is the correct tool for this.
 
 Go to Microsoft Sentinel > Workbooks.
@@ -217,7 +217,7 @@ Click Done Editing, then Save (floppy disk icon) to save your new dashboard.
 <p align="left"><img src="geo-IP-map.png" width="49%"></p>
 
 ### Part 6: Automation (Email Alerts)
-**Step 10:** Create the Playbook (Logic App)
+**Step 11: Create the Playbook (Logic App)**
 This is the workflow that sends the email.
 
 Go to Microsoft Sentinel > Automation.
@@ -246,9 +246,9 @@ Body: A new attack was detected on the honeypot. Attacker IP: [Add 'IP Address' 
 
 Click `Save`.
 
-[!! SCREENSHOT: The Logic App Designer, showing the "Microsoft Sentinel incident" trigger and the "Send an email" action. !!]
+<p align="left"><img src="automation.png" width="49%"></p>
 
-Step 11: Create the Analytics (Alert) Rule
+**Step 12: Create the Analytics (Alert) Rule**
 This rule runs our query and triggers the playbook.
 
 Go to Microsoft Sentinel > Analytics.
@@ -267,7 +267,7 @@ Query scheduling: Set to Run query every 5 minutes and Lookup data from the last
 
 Alert threshold: Set Is greater than to 0.
 
-<p align="left"><img src="automation.png" width="49%"></p>
+<p align="left"><img src="sentinel-analytics.png" width="49%"></p>
 
 
 Automated response tab:
@@ -284,7 +284,7 @@ Click `Apply`, then `Revie`w + `create`, then `Create`.
 
 <p align="left"><img src="automation.png" width="49%"></p>
 
-Your project is now 100% complete and automated.
+The project is now 100% complete and automated.
 
 
 Project Cleanup (IMPORTANT)
