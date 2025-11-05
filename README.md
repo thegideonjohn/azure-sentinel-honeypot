@@ -8,7 +8,7 @@ This system costs only a few cents to run and is an incredibly powerful, hands-o
 
 The end product is a live, interactive dashboard in your Azure portal showing a world map of all the IP addresses that are actively trying to hack into your VM.
 
-<p align="left"><img src="images/final-output.png" width="49%"></p>
+<p align="left"><img src="images/final-output.png" width="100%"></p>
 
 ## Features
 
@@ -46,7 +46,7 @@ This will contain all your project assets.
 3.  **Name:** `honeypot-rg`
 4.  **Region:** Select a region (e.g., `East US 2`). **All other resources must be in this same region.**
 
-<p align="left"><img src="images/honeypot-rg.png" width="49%"></p>
+<p align="left"><img src="images/honeypot-rg.png" width=100%"></p>
 
 
 #### Step 2: Create a Log Analytics Workspace (LAW)
@@ -58,7 +58,7 @@ This is the database that will store all our logs.
 5.  **Region:** `East US 2`
 6.  Click **Review + create**, then **Create**.
 
-<p align="left"><img src="images/log-analytics-workspace.png" width="49%"></p>
+<p align="left"><img src="images/log-analytics-workspace.png" width="100%"></p>
 
 
 #### Step 3: Deploy Microsoft Sentinel
@@ -68,7 +68,7 @@ This is the security "brain" that will analyze the logs.
 3.  Select the `honeypot-rg-law` you just created from the list.
 4.  Click **Add** to enable Sentinel.
 
-<p align="left"><img src="images/sentinel-overview.png" width="49%"></p>
+<p align="left"><img src="images/sentinel-overview.png" width="100%"></p>
 
 
 ---
@@ -97,7 +97,7 @@ This is the "honeypot."
     * Confirm you see the `Allow` rule for `RDP (3389)`.
 5.  Click **Review + create**, then **Create**.
 
-<p align="left"><img src="images/honeypot-vm.png" width="49%"></p>
+<p align="left"><img src="images/honeypot-vm.png" width="100%"></p>
 
 
 ---
@@ -117,7 +117,7 @@ This deploys an agent to the VM to stream its logs.
 9.  **On the "Collect" tab:** Select **"All Security Events"**.
 10. Click **Review + create**, then **Create**. This will take a few minutes to deploy the agent.
 
-<p align="left"><img src="images/dcr-wizard.png" width="49%"></p>
+<p align="left"><img src="images/dcr-wizard.png" width="100%"></p>
 
 
 #### Step 6: "Arm" the Honeypot (The 'Smart' Way)
@@ -133,7 +133,7 @@ This is the final step to make the VM vulnerable. We will turn off the internal 
 6.  You will see three profiles: **Domain**, **Private**, and **Public**. Click on each one and toggle the **"Microsoft Defender Firewall"** switch to **Off**.
 7.  You will *not* be kicked out of your RDP session. The honeypot is now fully armed and exposed, and all attack attempts will be logged.
 
-<p align="left"><img src="images/windows-security-settings.png" width="49%"></p>
+<p align="left"><img src="images/windows-security-settings.png" width="100%"></p>
 
 ---
 
@@ -167,7 +167,7 @@ SecurityEvent
 ```
 You will now see a clean list of attacker IPs and the usernames they are guessing.
 
-<p align="left"><img src="images/kql-query-and-output.png" width="49%"></p>
+<p align="left"><img src="images/kql-query-and-output.png" width="100%"></p>
 
 
 ### Part 5: Investigation & Visualization
@@ -182,7 +182,7 @@ Click the "Search" tab, paste the IP, and press Enter.
 
 View the "Detection" score (e.g., 12/95). This confirms the IP is a known bad actor.
 
-<p align="left"><img src="images/virustotal-output.png" width="49%"></p>
+<p align="left"><img src="images/virustotal-output.png" width="100%"></p>
 
 
 **Step 10: Build the Live Attack Map (Workbook)**
@@ -214,7 +214,7 @@ Click the blue "Run Query" button. You will see the live map.
 
 Click Done Editing, then Save (floppy disk icon) to save your new dashboard.
 
-<p align="left"><img src="images/geo-IP-map.png" width="49%"></p>
+<p align="left"><img src="images/geo-IP-map.png" width="100%"></p>
 
 ### Part 6: Automation (Email Alerts)
 **Step 11: Create the Playbook (Logic App)**
@@ -246,7 +246,7 @@ Body: A new attack was detected on the honeypot. Attacker IP: [Add 'IP Address' 
 
 Click `Save`.
 
-<p align="left"><img src="images/automation.png" width="49%"></p>
+<p align="left"><img src="images/automation.png" width="100%"></p>
 
 **Step 12: Create the Analytics (Alert) Rule**
 This rule runs our query and triggers the playbook.
@@ -267,7 +267,7 @@ Query scheduling: Set to Run query every 5 minutes and Lookup data from the last
 
 Alert threshold: Set Is greater than to 0.
 
-<p align="left"><img src="images/sentinel-analytics.png" width="49%"></p>
+<p align="left"><img src="images/sentinel-analytics.png" width="100%"></p>
 
 
 Automated response tab:
@@ -282,7 +282,7 @@ Actions: + Add action > Run playbook > Check the box for Honeypot-Send-Email-Ale
 
 Click `Apply`, then `Revie`w + `create`, then `Create`.
 
-<p align="left"><img src="images/alert.jpg" width="49%"></p>
+<p align="left"><img src="images/alert.jpg" width="100%"></p>
 
 The project is now 100% complete and automated.
 
