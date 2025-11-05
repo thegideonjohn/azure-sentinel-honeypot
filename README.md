@@ -282,7 +282,7 @@ Actions: + Add action > Run playbook > Check the box for Honeypot-Send-Email-Ale
 
 Click `Apply`, then `Revie`w + `create`, then `Create`.
 
-<p align="left"><img src="alert.png" width="49%"></p>
+<p align="left"><img src="alert.jpg" width="49%"></p>
 
 The project is now 100% complete and automated.
 
