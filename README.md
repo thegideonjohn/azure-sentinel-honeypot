@@ -299,3 +299,16 @@ Click Delete resource group.
 Type the name Honeypot-RG to confirm and click Delete.
 
 This will destroy all assets related to this project.
+
+<h3 align="left">Connect with me:</h3>
+<p align="left">
+  <a href="https://linkedin.com/in/gideonjohnutong" target="blank">
+    <img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5" alt="Your LinkedIn Profile" />
+  </a>
+  <a href="https://medium.com/@thegideonjohn" target="blank">
+    <img align="center" src="https://img.shields.io/badge/Medium-12100E" alt="Your Medium Blog" />
+  </a>
+   <a href="https://twitter.com/@thegideonjohn" target="blank">
+    <img align="center" src="https://img.shields.io/badge/X-000000" alt="Your X (Twitter) Profile" />
+  </a>
+</p>
