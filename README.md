@@ -46,7 +46,8 @@ This will contain all your project assets.
 3.  **Name:** `honeypot-rg`
 4.  **Region:** Select a region (e.g., `East US 2`). **All other resources must be in this same region.**
 
-**[!! SCREENSHOT: The "Create a resource group" blade with the `Honeypot-RG` name and region filled in. !!]**
+<p align="left"><img src="honeypot-rg.png" width="49%"></p>
+
 
 #### Step 2: Create a Log Analytics Workspace (LAW)
 This is the database that will store all our logs.
@@ -57,7 +58,8 @@ This is the database that will store all our logs.
 5.  **Region:** `East US 2`
 6.  Click **Review + create**, then **Create**.
 
-**[!! SCREENSHOT: The "Create Log Analytics workspace" blade with the `Honeypot-LAW` name and resource group selected. !!]**
+<p align="left"><img src="log-analytics-workspace.png" width="49%"></p>
+
 
 #### Step 3: Deploy Microsoft Sentinel
 This is the security "brain" that will analyze the logs.
@@ -66,7 +68,8 @@ This is the security "brain" that will analyze the logs.
 3.  Select the `honeypot-rg-law` you just created from the list.
 4.  Click **Add** to enable Sentinel.
 
-**[!! SCREENSHOT: The main Microsoft Sentinel "Overview" page, showing "0 Events," "0 Alerts," etc. This is the "before" picture. !!]**
+<p align="left"><img src="sentinel overview.png" width="49%"></p>
+
 
 ---
 
@@ -94,7 +97,8 @@ This is our "honeypot."
     * Confirm you see the `Allow` rule for `RDP (3389)`.
 5.  Click **Review + create**, then **Create**.
 
-**[!! SCREENSHOT: The "Basics" tab of the VM creation, highlighting the VM name, region, `B2s` size, and the open `RDP (3389)` port setting. !!]**
+<p align="left"><img src="honeypot-vm.png" width="49%"></p>
+
 
 ---
 
@@ -113,7 +117,8 @@ This deploys an agent to the VM to stream its logs.
 9.  **On the "Collect" tab:** Select **"All Security Events"**.
 10. Click **Review + create**, then **Create**. This will take a few minutes to deploy the agent.
 
-**[!! SCREENSHOT: The "Create data collection rule" wizard, on the "Resources" tab, showing your `honeypot-vm` selected. !!]**
+<p align="left"><img src="dcr-wizard.png" width="49%"></p>
+
 
 #### Step 6: "Arm" the Honeypot (The 'Smart' Way)
 This is the final step to make the VM vulnerable. We will turn off the internal Windows Firewall.
@@ -128,7 +133,7 @@ This is the final step to make the VM vulnerable. We will turn off the internal 
 6.  You will see three profiles: **Domain**, **Private**, and **Public**. Click on each one and toggle the **"Microsoft Defender Firewall"** switch to **Off**.
 7.  You will *not* be kicked out of your RDP session. The honeypot is now fully armed and exposed, and all attack attempts will be logged.
 
-**[!! SCREENSHOT: The "Firewall & network protection" page in Windows Settings, showing the Domain, Private, and Public firewalls all set to "Off". !!]**
+<p align="left"><img src="windows-security-settings.png" width="49%"></p>
 
 ---
 
@@ -136,7 +141,7 @@ This is the final step to make the VM vulnerable. We will turn off the internal 
 
 **Wait 1-2 hours.** You must be patient for automated scanners to find your VM's IP and for the logs to sync.
 
-#### Step 7: Run Your First Hunt
+**Step 7:** Run Your First Hunt
 1.  Go to **Microsoft Sentinel** > **Logs**.
 2.  Paste this query to find all failed RDP logins (`EventID 4625`).
     ```kql
@@ -148,9 +153,9 @@ This is the final step to make the VM vulnerable. We will turn off the internal 
     ```
 3.  **Note your own IP:** You will see your *own* failed login attempts. Find your public IP (Google "what is my IP") and note it. For this guide, we'll use `98.97.79.84` as the example.
 
-**[!! SCREENSHOT: The KQL "Results" tab showing your *own* IP address. This proves the logging is working. !!]**
 
-#### Step 8: Filter for Attackers Only
+
+**Step 8:** Filter for Attackers Only
 Now, modify the query to filter *out* your own IP, showing you *only* the real attackers.
 ```kql
 SecurityEvent
@@ -162,10 +167,11 @@ SecurityEvent
 ```
 You will now see a clean list of attacker IPs and the usernames they are guessing.
 
-[!! SCREENSHOT: The KQL "Results" tab showing the list of real attacker IPs (from Iran, Germany, etc.). This is the "money shot." !!]
+<p align="left"><img src="automation.png" width="49%"></p>
 
-Part 5: Investigation & Visualization
-Step 9: Investigate an Attacker
+
+### Part 5: Investigation & Visualization
+**Step 8:** Investigate an Attacker
 Is the IP really malicious?
 
 Copy an attacker's IP from your query results.
@@ -176,14 +182,15 @@ Click the "Search" tab, paste the IP, and press Enter.
 
 View the "Detection" score (e.g., 12/95). This confirms the IP is a known bad actor.
 
-[!! SCREENSHOT: The VirusTotal report for an attacker IP, clearly showing the "Detection" score (e.g., "12 / 95 security vendors flagged this"). !!]
+<p align="left"><img src="virustotal-output.png" width="49%"></p>
 
-Step 10: Build the Live Attack Map (Workbook)
+
+**Step 9:** Build the Live Attack Map (Workbook)
 The "Logs" query chart is buggy. A Workbook is the correct tool for this.
 
 Go to Microsoft Sentinel > Workbooks.
 
-Click + Add workbook, then click Edit (pencil icon).
+Click + Add `workbook`, then click `Edi`t (pencil icon).
 
 Click + Add and select Add query.
 
@@ -207,10 +214,10 @@ Click the blue "Run Query" button. You will see the live map.
 
 Click Done Editing, then Save (floppy disk icon) to save your new dashboard.
 
-[!! SCREENSHOT: Your final, working Sentinel Workbook showing the world map with attacker dots. This is the same as the "Final Result" image. !!]
+<p align="left"><img src="geo-IP-map.png" width="49%"></p>
 
-Part 6: Automation (Email Alerts)
-Step 11: Create the Playbook (Logic App)
+### Part 6: Automation (Email Alerts)
+**Step 10:** Create the Playbook (Logic App)
 This is the workflow that sends the email.
 
 Go to Microsoft Sentinel > Automation.
@@ -221,7 +228,7 @@ Name: `honeypot-send-email-alert`
 
 Resource Group: `honeypot-rg`
 
-Click Create, then Go to resource.
+Click `Create`, then Go to `resource`.
 
 In the Logic App Designer, click + New step.
 
@@ -233,15 +240,15 @@ Fill out the template:
 
 To: Your email address
 
-Subject: HONEYPOT ALERT: New Brute-Force Attack!
+Subject: HONEYPOT ALERT: `New Brute-Force Attack!`
 
 Body: A new attack was detected on the honeypot. Attacker IP: [Add 'IP Address' dynamic content here]
 
-Click Save.
+Click `Save`.
 
 [!! SCREENSHOT: The Logic App Designer, showing the "Microsoft Sentinel incident" trigger and the "Send an email" action. !!]
 
-Step 12: Create the Analytics (Alert) Rule
+Step 11: Create the Analytics (Alert) Rule
 This rule runs our query and triggers the playbook.
 
 Go to Microsoft Sentinel > Analytics.
@@ -250,7 +257,7 @@ Click + Create > Scheduled query rule.
 
 General tab:
 
-Name: Honeypot-Send-Email-Alert
+Name: `Honeypot-Send-Email-Alert`
 
 Set rule logic tab:
 
@@ -260,11 +267,12 @@ Query scheduling: Set to Run query every 5 minutes and Lookup data from the last
 
 Alert threshold: Set Is greater than to 0.
 
-[!! SCREENSHOT: The "Set rule logic" tab of the Analytics Rule wizard, showing the KQL query and the "Alert threshold > 0" setting. !!]
+<p align="left"><img src="automation.png" width="49%"></p>
+
 
 Automated response tab:
 
-Click + Add new.
+Click + `Add new`.
 
 Name: `honeypot-email-automation`
 
@@ -272,9 +280,9 @@ Actions: + Add action > Run playbook > Check the box for Honeypot-Send-Email-Ale
 
 !! PERMISSION FIX !!: If you see a red error, click the "grant permission" link. Or, manually add the "Microsoft Sentinel Automation Contributor" role to the "Microsoft Sentinel" managed identity in your Honeypot-RG's IAM panel.
 
-Click Apply, then Review + create, then Create.
+Click `Apply`, then `Revie`w + `create`, then `Create`.
 
-[!! SCREENSHOT: The "Automated response" tab, showing the automation rule successfully linking to your Honeypot-Send-Email-Alert playbook. !!]
+<p align="left"><img src="automation.png" width="49%"></p>
 
 Your project is now 100% complete and automated.
 
