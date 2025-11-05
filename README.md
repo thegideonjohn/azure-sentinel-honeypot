@@ -8,7 +8,7 @@ This system costs only a few cents to run and is an incredibly powerful, hands-o
 
 The end product is a live, interactive dashboard in your Azure portal showing a world map of all the IP addresses that are actively trying to hack into your VM.
 
-**[!! SCREENSHOT: Your final, working Sentinel Workbook showing the world map with attacker dots. !!]**
+<p align="left"><img src="final-output.png" width="49%"></p>
 
 ## Features
 
