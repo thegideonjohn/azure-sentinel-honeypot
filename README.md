@@ -8,7 +8,7 @@ This system costs only a few cents to run and is an incredibly powerful, hands-o
 
 The end product is a live, interactive dashboard in your Azure portal showing a world map of all the IP addresses that are actively trying to hack into your VM.
 
-<p align="left"><img src="images/final-output.png" width="100%"></p>
+<p align="left"><img src="images/final-result.png" width="100%"></p>
 
 ## Features
 
